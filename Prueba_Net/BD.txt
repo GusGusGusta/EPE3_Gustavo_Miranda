@@ -1,0 +1,53 @@
+use EPE3;
+
+create table Medico(
+idMedico int primary key,
+NombreMed varchar(50),
+ApellidoMed varchar(50),
+RunMed varchar(50),
+Eunacom varchar(5),
+NacionalidadMed varchar(45),
+Especialidad varchar(45),
+Horario time,
+TarifaHr int
+);
+
+insert into Medico() 
+Values
+(1,"Gustavo","Miranda","18.153.450-8","sip","chilena","Traumatologo","08:00:00",50000),
+(2,"Gustavo","Ojeda","18.153.450-8","nop","chilena","Medicina General","13:00:00",40000);
+
+select * from Medico;
+
+create table Paciente (
+id_Paciente int primary key,
+NombrePac varchar (50),
+ApellidoPac varchar (50),
+RunPac varchar (25),
+Nacionalidad varchar (50),
+Visa varchar (5),
+Genero varchar (10),
+Sintomaspac varchar (100),
+Medico_idMedico int,
+
+constraint id_doc foreign key (Medico_idMedico) references Medico(idMedico)
+);
+insert into Paciente() 
+Values
+(1,"Maria","Diaz","24.537.563-8","Colombiana","Sip","Femenino","Dolor de Garganta",2),
+(2,"Camila","Urbano","24.537.563-8","Colombiana","Sip","Femenino","esguince Leve ",1);
+
+select * from Paciente;
+
+create table Reserva(
+idReserva int primary key,
+Especialidad varchar(45),
+DiaReserva date,
+Paciente_idPaciente int,
+
+constraint id_pac foreign key (Paciente_idPaciente ) references Paciente(idPaciente)
+);
+insert into Reserva() 
+Values
+(1,"Medicina General Adulto","2022-11-28",1),
+(2,"Traumatologia Adulto","2023-11-28",2);
